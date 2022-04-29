@@ -28,3 +28,15 @@ app.get('/api/todos/:id/:x/:y', (req, res) => {
   console.log(req.params); ///  { id: '5', x: '2', y: '1' }
 })
 ```
+
+## Optional Request params
+
+You just need to put `?` mark in front of the param.
+
+```js
+request => /api/todos/5/2/1
+
+app.get('/api/todos/:id/:x/:y?', (req, res) => {
+  console.log(req.params); ///  { id: '5', x: '2', y: '1' }
+})
+```
