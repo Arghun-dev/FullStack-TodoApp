@@ -40,3 +40,28 @@ app.get('/api/todos/:id/:x/:y?', (req, res) => {
   console.log(req.params); ///  { id: '5', x: '2', y: '1' }
 })
 ```
+
+
+## Handling Delete Request
+
+```js
+app.delete('/api/todos/:id', (req, res) => {
+  const ID = req.params.id * 1;
+  if (ID > todos.length) {
+    res.status(404).json({
+      status: "failed",
+      message: "Invalid ID"
+    })
+  }
+  
+  const newTodos = todos.filter((t) => t.id !== ID);
+  fs.writeFile(todosPath, JSON.stringify(newTodos), (err) => {
+    res.status(204).json({
+      status: "success",
+      data: {
+        todo: null
+      }
+    })
+  })
+})
+```
