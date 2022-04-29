@@ -65,3 +65,19 @@ app.delete('/api/todos/:id', (req, res) => {
   })
 })
 ```
+
+
+## Middleware 
+
+In some cases you need to add a specific feature, for example `createdAt` to all of your requests. You have to do this:
+
+```js
+app.use((req, res, next) => {
+  console.log('Hello from the middleware');
+  next();
+});
+
+app.use((req, res, next) => {
+  const createdAt = new Date().toISOString()
+});
+```
